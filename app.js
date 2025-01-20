@@ -12,6 +12,18 @@ function limpaCampoID(id){
     document.getElementById(id).value = '';
 }
 
+function focusInput(id) {
+    var inputElement = document.getElementById(id);
+
+    // Verifica se o elemento foi encontrado antes de tentar coloca-lo em foco
+    if (inputElement) {
+        // Coloca o foco no elemento
+        inputElement.focus();
+    } else {
+        console.error(`Elemento com ID ${id} não encontrado.`);
+    }
+}
+
 function novoSorteio(){
     limpaCampoID('amigo');
     amigos = [];
@@ -20,6 +32,8 @@ function novoSorteio(){
     txtLista.innerHTML = '';
     let txtSorteado = document.getElementById('resultado');
     txtSorteado.innerHTML = '';
+
+    focusInput('amigo');
 
 //    console.log('btnNovoSorteio(clicado)');
 }
@@ -79,6 +93,10 @@ function sortearAmigo(){
         }
     }else{
         alert('Para sortear, adicionar ao menos 2 amigos!');
+        focusInput('amigo');
         //console.log('FsortearAmigo() = ao menos 2 amigos para sortear');
     }
 }
+
+// Ao iniciar, foca no input
+focusInput('amigo');
