@@ -41,7 +41,7 @@ function novoSorteio(){
 function listaAmigos(){
     let lista = document.getElementById('listaAmigos');
     lista.innerHTML = amigos;
-    
+
     // log
 //   console.log('FlistaAmigos() = '+ amigos);
 }
@@ -65,7 +65,16 @@ function resultadoSorteio(idSorteado){
     let nomeSorteado = amigos[idSorteado];
 
     let exibirSorteado = document.getElementById('resultado');
-    exibirSorteado.innerHTML = nomeSorteado;
+    let mensagemResultado = "O sorteado foi: " + nomeSorteado; 
+    
+    exibirSorteado.innerHTML = mensagemResultado;
+
+    if ('speechSynthesis' in window) {
+        let utterance = new SpeechSynthesisUtterance(mensagemResultado);
+        utterance.lang = 'pt-BR'; 
+        utterance.rate = 1.2; 
+        window.speechSynthesis.speak(utterance); 
+    }
     
     // log
 //    console.log('FresultadoSorteio(sorteado) = ' + nomeSorteado);
